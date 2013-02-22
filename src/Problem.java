@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class Problem {
 
-    protected FileInputStream in;
+    protected FileInputStream raw;
     protected PrintStream out;
     protected LogOut log;
 
@@ -32,7 +32,7 @@ public abstract class Problem {
     public final void solve(int inputId) throws IOException, ProblemStoppedException {
         String inputFilename = getInputFilename(inputId);
         String outputFilename = getPrefix() + Challenge.buildOutFilename(inputFilename);
-        in = new FileInputStream(inputFilename);
+        raw = new FileInputStream(inputFilename);
         out = new PrintStream(outputFilename);
         log = new LogOut(System.out, out);
 
@@ -40,9 +40,9 @@ public abstract class Problem {
             stopping = false;
             onSolve();
         } finally {
-            Utils.close(in);
+            Utils.close(raw);
             Utils.close(out);
-            in = null;
+            raw = null;
             out = null;
         }
     }

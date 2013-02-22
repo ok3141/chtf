@@ -12,6 +12,8 @@ public class P extends Problem {
     @Param
     private long magic = 0x36523462;
 
+    private DataInputStream in;
+
     @Override
     protected String getFileExtension() {
         return "wav";
@@ -22,7 +24,7 @@ public class P extends Problem {
         log.println(epsilon);
         log.println(magic);
 
-        DataInputStream in = new DataInputStream(this.in);
+        in = new DataInputStream(raw);
 
         WavHeader header = WavFile.read(in);
         if (header.hasFactChunk()) {
