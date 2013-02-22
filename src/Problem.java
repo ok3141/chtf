@@ -25,6 +25,10 @@ public abstract class Problem {
         return "in";
     }
 
+    public void onPreSolve(int inputId) {
+        // for inheritors
+    }
+
     public final String getInputFilename(int inputId) {
         return inputId + "." + getFileExtension();
     }

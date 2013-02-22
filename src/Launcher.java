@@ -207,6 +207,8 @@ public class Launcher {
                     }
                 };
 
+                p.onPreSolve(i);
+
                 EXECUTOR.execute(new Runnable() {
                     public void run() {
                         try {
