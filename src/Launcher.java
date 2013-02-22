@@ -26,6 +26,8 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
 public class Launcher {
+    private static final Color COLOR_DARK_GREEN = new Color(0, 192, 0);
+    private static final Color COLOR_DARK_ORANGE = new Color(224, 96, 0);
     private static final int INPUT_COUNT = 10;
     private static final int BUTTON_SIZE = 20;
     private static final int WINDOW_WIDTH = 1500;
@@ -183,7 +185,7 @@ public class Launcher {
                 }
 
                 final String pi = p.getClass().getSimpleName() + ", " + p.getInputFilename(i);
-                messanger.setMessage("Solving problem: " + pi, Color.BLACK);
+                messanger.setMessage("Solving problem: " + pi, Color.BLUE);
 
                 final JButton b = (JButton) ev.getComponent();
                 b.setEnabled(false);
@@ -209,13 +211,13 @@ public class Launcher {
                     public void run() {
                         try {
                             p.solve(i);
-                            async.setMessage("Solved problem: " + pi, Color.BLACK);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                            async.setMessage("Failed problem: " + pi, Color.RED);
+                            async.setMessage("Solved problem: " + pi, COLOR_DARK_GREEN);
                         } catch (ProblemStoppedException ex) {
                             ex.printStackTrace();
-                            async.setMessage("Stopped problem: " + pi, Color.RED);
+                            async.setMessage("Stopped problem: " + pi, COLOR_DARK_ORANGE);
+                        } catch (Throwable ex) {
+                            ex.printStackTrace();
+                            async.setMessage("Failed problem: " + pi, Color.RED);
                         }
                     }
                 });
