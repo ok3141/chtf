@@ -25,11 +25,11 @@ public abstract class Problem {
         return "in";
     }
 
-    public String getInputFilename(int inputId) {
+    public final String getInputFilename(int inputId) {
         return inputId + "." + getFileExtension();
     }
 
-    public void solve(int inputId) throws IOException, ProblemStoppedException {
+    public final void solve(int inputId) throws IOException, ProblemStoppedException {
         String inputFilename = getInputFilename(inputId);
         String outputFilename = getPrefix() + Challenge.buildOutFilename(inputFilename);
         in = new FileInputStream(inputFilename);
@@ -47,7 +47,7 @@ public abstract class Problem {
         }
     }
 
-    public void stop() {
+    public final void stop() {
         stopping = true;
     }
 
